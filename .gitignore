@@ -1,0 +1,5 @@
+.netrwhist
+undo/
+node_modules/
+.DS_Store
+lazy-lock.json
