@@ -10,10 +10,16 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<leader>wh', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<leader>wl', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<leader>wj', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<leader>wk', '<C-w>K', { desc = 'Move window to the upper' })
 
 -- Toggle invisible characters (indent lines)
 vim.keymap.set('n', '<leader>i', function()
