@@ -1,4 +1,3 @@
-print("hello from lazy.lua in config")
 -- Bootstrap lazy.nvim
 --
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
