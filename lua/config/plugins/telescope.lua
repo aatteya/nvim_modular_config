@@ -32,11 +32,13 @@ return {
 	config = function()
 		require('telescope').setup {
 			--  All the info you're looking for is in `:help telescope.setup()`
-			-- defaults = {
+			defaults = {
+				dynamic_preview_title = true,
+				path_display = { "filename_first" },
 			--   mappings = {
 			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 			--   },
-			-- },
+			},
 			-- pickers = {}
 			extensions = {
 				['ui-select'] = {
