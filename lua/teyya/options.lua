@@ -8,6 +8,9 @@ vim.opt.relativenumber = true
 
 -- Set tab settings
 vim.o.breakindent = true
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = -1 -- important if using guess-indent plugin to keep tab settings syncronized
+vim.opt.tabstop = 4
 vim.opt.expandtab = false
 vim.opt.list = true
 vim.opt.listchars = {
@@ -20,7 +23,7 @@ vim.opt.listchars = {
 }
 
 -- Misc settings (nerdfonts, mouse, undo history)
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 vim.o.mouse = 'a'
 vim.o.undofile = true
 
