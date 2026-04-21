@@ -33,6 +33,8 @@ vim.keymap.set('n', '<leader>i', function()
 end,
 {desc = "Toggle indent lines"})
 
+-- Change cwd to the current file
+vim.keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { desc = '[C]hange pwd to the [d]irecotry of the currently open file'})
 
 -- Move lines up and down (bubble move)
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>== ', { desc = 'Move line down' })
@@ -48,4 +50,5 @@ vim.keymap.set('n', '<leader>st', function()
   vim.cmd.term()
   vim.cmd.wincmd('J')
   vim.api.nvim_win_set_height(0, 15)
+  vim.cmd('startinsert')
 end)
