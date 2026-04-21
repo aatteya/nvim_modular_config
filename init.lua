@@ -4,5 +4,3 @@
 --
 require("teyya")
 require("config.lazy")
-
-
