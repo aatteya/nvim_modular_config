@@ -1,4 +1,3 @@
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -52,3 +51,7 @@ vim.keymap.set('n', '<leader>st', function()
   vim.api.nvim_win_set_height(0, 15)
   vim.cmd('startinsert')
 end)
+
+-- Center search results
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
