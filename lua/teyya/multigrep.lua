@@ -35,7 +35,6 @@ local live_multigrep = function(opts)
 		end,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
 		cwd = opts.cwd,
-
 	}
 
 
