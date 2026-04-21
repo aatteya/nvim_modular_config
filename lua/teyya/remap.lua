@@ -23,7 +23,6 @@ vim.keymap.set('n', '<leader>wk', '<C-w>K', { desc = 'Move window to the upper' 
 -- Toggle invisible characters (indent lines)
 vim.keymap.set('n', '<leader>i', function()
 	vim.opt.list = not vim.opt.list:get()
-
 	if vim.opt.list:get() then
 		print('Show indentation marks')
 	else
@@ -35,23 +34,43 @@ end,
 -- Change cwd to the current file
 vim.keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { desc = '[C]hange pwd to the [d]irecotry of the currently open file'})
 
--- Move lines up and down (bubble move)
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+-- Move through quickfix list and local list
+vim.keymap.set('n', '<A-j>', ':cnext<CR>zz', { desc = 'Jump to next Quickfix list item' })
+vim.keymap.set('n', '<A-k>', ':cprev<CR>zz', { desc = 'Jump to previous Quickfix list item' })
+vim.keymap.set('n', '<A-l>', ':lnext<CR>zz', { desc = 'Jump to next Location list item' })
+vim.keymap.set('n', '<A-h>', ':lprev<CR>zz', { desc = 'Jump to previous Location list item' })
 
+-- Nvim-Terminal remaps
+vim.keymap.set('n', '<leader>st', function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd('J')
+	vim.api.nvim_win_set_height(0, 15)
+	vim.cmd('startinsert')
+end)
+
+-- paste in visual mode
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = '[P]aste in visual mode without copying' })
+vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = '[D]elete without copying' })
+
+-- Move lines up and down (bubble move)
+vim.keymap.set('n', '<A-J>', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<A-K>', ':m .-2<CR>==', { desc = 'Move line up' })
 -- Move selected blocks up and down in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move block up' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move block up' })
 
--- Nvim-Terminal remaps
-vim.keymap.set('n', '<leader>st', function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd('J')
-  vim.api.nvim_win_set_height(0, 15)
-  vim.cmd('startinsert')
-end)
-
 -- Center search results
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+-- cjnter window after C-d / C-u
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Join line below without moving cursor
+vim.keymap.set('n', 'J', 'mzJ`z')
+-- indent and move cursor to beginning of line (notice using ' instead of `)
+vim.keymap.set('n', '=ap', "mz=ap'z")
+-- find and replace
+vim.keymap.set("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[F]ind and [Replace]' })
+
