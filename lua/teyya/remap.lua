@@ -36,8 +36,8 @@ end,
 vim.keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { desc = '[C]hange pwd to the [d]irecotry of the currently open file'})
 
 -- Move lines up and down (bubble move)
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>== ', { desc = 'Move line down' })
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>== ', { desc = 'Move line up' })
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
 
 -- Move selected blocks up and down in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move block up' })
