@@ -16,7 +16,12 @@
 
 return {
 	'nvim-telescope/telescope.nvim',
-	event = 'VimEnter',
+	event = function(self, event)
+		vim.defer_fn(function()
+			require('lazy').load({plugins = {self.name} })
+		end, 40)
+	end,
+
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		{
