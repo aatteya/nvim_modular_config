@@ -6,8 +6,10 @@ return {
     style = "moon",
     transparent = false,
     terminal_colors = true,
+	cache = true,
   },
-  config = function()
+  config = function(_, opts)
+	 require("tokyonight").setup(opts)
      vim.cmd([[colorscheme tokyonight-moon]])
    end,
 }
