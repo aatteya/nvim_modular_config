@@ -3,7 +3,7 @@
 vim.opt.clipboard = "unnamedplus"
 
 -- Set line number settings
-vim.opt.number = true 
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Set tab settings
@@ -56,6 +56,23 @@ vim.api.nvim_create_autocmd('TermOpen', {
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', {clear = true }),
     callback = function()
       vim.highlight.on_yank()
+    end,
+  })
+
+
+  -- Set files from G:\ drive to read-only mode
+  vim.api.nvim_create_autocmd("BufReadPre", {
+    desc = 'Open files on network drives in readonly mode',
+    group = vim.api.nvim_create_augroup('network-buffers-read-only', {clear = true }),
+    pattern = "*",
+    callback = function()
+      local path = vim.fn.expand("%:p")
+      
+      -- if path matches a network drive, open in readonly mode
+      if path:match('^[gG]:') or path:match('^[hH]:') then
+        vim.bo.readonly = true
+        print('Network drive detected: Setting buffer to Read-Only')
+      end
     end,
   })
   -- vim: ts=2 sts=2 sw=2 et

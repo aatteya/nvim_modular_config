@@ -161,7 +161,24 @@ return {
 		local servers = {
 			clangd = {},
 			--gopls = {},
-			pyright = {},
+			pyright = {
+				settings = {
+					python = {
+						pythonPath = "C:\\Python313\\python.exe",
+						analysis = {
+							typeCheckingMode = "basic",
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "openFilesOnly",
+
+							diagnosticSeverityOverrides = {
+								reportMissingTypeStubs = "none",
+							},
+						},
+					},
+				},
+
+			},
 			--csharp_ls = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--

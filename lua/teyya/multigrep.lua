@@ -50,6 +50,11 @@ end
 
 M.setup = function()
 	vim.keymap.set('n', '<leader>sm', live_multigrep, { desc = "[S]earch [M]ulti Grep"})
+	vim.keympa.set('n', '<leader>sm/', live_multigrep, {
+		desc = "[S]earch [M]ulti Grep in Open Files",
+		grep_open_files = true,
+		prompt_title = 'Multi Grep in Open Files',
+	})
 end
 
 return M
