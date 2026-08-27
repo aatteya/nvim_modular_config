@@ -6,6 +6,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open diagnostic [E]rror float window' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -74,3 +75,17 @@ vim.keymap.set('n', '=ap', "mz=ap'z")
 -- find and replace
 vim.keymap.set("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[F]ind and [Replace]' })
 
+
+local function remap_with_ignored_filetypes(in_command, remap_command)
+	local ignored_filetypes = { qf = true, netrw = true, vim = true }
+	if ignored_filetypes[vim.bo.filetype] then
+		return in_command
+	else
+		return remap_command
+	end
+end
+
+-- Remap Enter to add new lines
+vim.keymap.set('n', '<CR>', function()
+	return remap_with_ignored_filetypes('<CR>', 'o<Esc>')
+end, { desc = 'Add new line in normal mode', expr = true, silent = true})
