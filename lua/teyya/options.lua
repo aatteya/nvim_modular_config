@@ -42,6 +42,9 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.inccommand = 'nosplit'
 
+-- Set fileformats to support unix and dos automatically
+vim.opt.fileformats = { "unix", "dos" }
+
 vim.api.nvim_create_autocmd('TermOpen', {
   group = vim.api.nvim_create_augroup('custom-term-open', {clear = true }),
   callback = function()
