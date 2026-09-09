@@ -14,7 +14,7 @@ local live_multigrep = function(opts)
 				return nil
 			end
 
-			local pieces = vim.split(prompt, "  ")
+			local pieces = vim.split(prompt, "  ", { plain = true})
 			local args = { "rg" }
 			if pieces[1] then
 				table.insert(args, "-e")
@@ -28,10 +28,18 @@ local live_multigrep = function(opts)
 				end
 			end
 
-			return vim.tbl_flatten {
-				args,
-				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case"},
-			}
+			local flags = { "--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case"}
+
+			for _, flag in ipairs(flags) do
+				table.insert(args, flag)
+			end
+
+			return args
 		end,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
 		cwd = opts.cwd,
